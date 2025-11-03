@@ -1,0 +1,80 @@
+//Security Endpoints
+### register a user
+POST http://{{url}}/auth/register
+
+{
+    "username": "user",
+    "password": "pass12345"
+}
+
+
+### login
+POST http://{{url}}/auth/login
+
+{
+    "username": "ADMIN",
+    "password": "1234"
+}
+
+### test user token
+GET http://{{url}}/protected/user_demo
+AUTHORIZATION: Bearer {{uToken}}
+
+### test admin token
+GET http://{{url}}/protected/admin_demo
+AUTHORIZATION: Bearer {{aToken}}
+
+
+### GET All Trips -- ?category=CITY
+GET https://{{url}}/trips
+AUTHORIZATION: Bearer {{aToken}}
+
+### GET With id
+GET https://{{url}}/trips/6
+AUTHORIZATION: Bearer {{aToken}}
+
+### GET Total price for the diffrent guides
+GET https://{{url}}/trips/guides/totalprice
+AUTHORIZATION: Bearer {{aToken}}
+
+### GET packing weight
+GET https://{{url}}/trips/1/packing/weight
+AUTHORIZATION: Bearer {{aToken}}
+
+### POST trips
+POST https://{{url}}/trips
+Content-Type: application/json
+AUTHORIZATION: Bearer {{aToken}}
+
+{
+"name": "Copenhagen",
+"startTime": "2026-04-20T09:00",
+"endTime": "2026-04-20T17:00",
+"location": "Denmark",
+"price": 1200,
+"category": "CITY"
+}
+
+### Update a trip
+PUT https://{{url}}/trips/6
+Content-Type: application/json
+AUTHORIZATION: Bearer {{aToken}}
+
+{
+  "name": "Aarhus",
+  "startTime": "2026-04-20T09:00",
+  "endTime": "2026-04-20T17:00",
+  "location": "Denmark",
+  "price": 1200,
+  "category": "CITY"
+}
+
+### Adds a Guide to the trip
+PUT https://{{url}}//trips/6/guides/5
+AUTHORIZATION: Bearer {{aToken}}
+
+
+### Delete a Trip
+DELETE https://{{url}}/trips/6
+AUTHORIZATION: Bearer {{aToken}}
+
