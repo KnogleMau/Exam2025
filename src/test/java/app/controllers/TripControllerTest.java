@@ -1,10 +1,9 @@
 package app.controllers;
 
 import app.config.ApplicationConfig;
-import app.routes.Routes;
+import app.routes.route;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import io.restassured.response.Response;
 import org.junit.jupiter.api.*;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.containsString;
@@ -23,7 +22,7 @@ class TripControllerTest {
         ApplicationConfig.
                 getInstance()
                 .initiateServer()
-                .setRoute(new Routes().getRoutes())
+                .setRoute(new route().getRoutes())
                 .startServer(7080);
     }
 

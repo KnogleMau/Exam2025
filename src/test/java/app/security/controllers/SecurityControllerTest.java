@@ -1,17 +1,15 @@
 package app.security.controllers;
 
 import app.config.ApplicationConfig;
-import app.routes.Routes;
+import app.routes.route;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
-import static org.junit.jupiter.api.Assertions.*;
 
 class SecurityControllerTest {
     private static String token;
@@ -26,7 +24,7 @@ class SecurityControllerTest {
                 //  .checkSecurityRoles() // check for role when route is called
                 //  .setRoute(new SecurityRoutes().getSecurityRoutes())
                 //  .setRoute(SecurityRoutes.getSecuredRoutes())
-                .setRoute(new Routes().getRoutes())
+                .setRoute(new route().getRoutes())
                 .startServer(7080);
     }
 

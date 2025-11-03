@@ -29,7 +29,7 @@ This is a simple project, where you can see a trip, and then the guide to the tr
 Base URL:  
 **http://localhost:7007/api**
 
-> All protected routes require a valid **JWT Bearer Token** in the `Authorization` header.
+> All protected route require a valid **JWT Bearer Token** in the `Authorization` header.
 >
 > **Roles:**
 > -  **ADMIN** – full access (create, update, delete)
