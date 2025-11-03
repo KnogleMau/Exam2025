@@ -4,7 +4,7 @@ import app.config.ApplicationConfig;
 import app.config.HibernateConfig;
 import app.exceptions.EntityNotFoundException;
 import app.populate.Populate;
-import app.routes.route;
+import app.routes.Routes;
 import app.security.routes.SecurityRoutes;
 import jakarta.persistence.EntityManagerFactory;
 
@@ -14,7 +14,7 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Hello Exam-2025");
 EntityManagerFactory emf = HibernateConfig.getEntityManagerFactory();
-route route = new route();
+Routes Routes = new Routes();
 Populate populate = new Populate(emf);
 
 
@@ -24,7 +24,7 @@ Populate populate = new Populate(emf);
                 .checkSecurityRoles() // check for role when route is called
                 .setRoute(new SecurityRoutes().getSecurityRoutes())
                 .setRoute(SecurityRoutes.getSecuredRoutes())
-                .setRoute(route.getRoutes())
+                .setRoute(Routes.getRoutes())
                 .startServer(7007)
                 .setCORS()
                 .setGeneralExceptionHandling();

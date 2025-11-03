@@ -29,7 +29,7 @@ This is a simple project, where you can see a trip, and then the guide to the tr
 Base URL:  
 **http://localhost:7007/api**
 
-> All protected route require a valid **JWT Bearer Token** in the `Authorization` header.
+> All protected Routes require a valid **JWT Bearer Token** in the `Authorization` header.
 >
 > **Roles:**
 > -  **ADMIN** – full access (create, update, delete)
@@ -43,8 +43,8 @@ Base URL:
 |---------|-----------|--------------|----------------|----------------|
 | **POST** | `/auth/register` | Register a new user | ❌ | Public |
 | **POST** | `/auth/login` | Log in and receive a JWT token | ❌ | Public |
-| **GET** | `/protected/user_demo` | Test route for users | ✅ | USER |
-| **GET** | `/protected/admin_demo` | Test route for admins | ✅ | ADMIN |
+| **GET** | `/protected/user_demo` | Test Routes for users | ✅ | USER |
+| **GET** | `/protected/admin_demo` | Test Routes for admins | ✅ | ADMIN |
 
 ---
 

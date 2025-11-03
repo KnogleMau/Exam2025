@@ -5,7 +5,7 @@ import io.javalin.apibuilder.EndpointGroup;
 import static io.javalin.apibuilder.ApiBuilder.get;
 import static io.javalin.apibuilder.ApiBuilder.path;
 
-public class route {
+public class Routes {
     GuideRoutes guideRoutes = new GuideRoutes();
     TripRoutes tripRoutes = new TripRoutes();
     public EndpointGroup getRoutes(){

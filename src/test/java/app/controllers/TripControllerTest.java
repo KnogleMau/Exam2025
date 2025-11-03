@@ -1,7 +1,7 @@
 package app.controllers;
 
 import app.config.ApplicationConfig;
-import app.routes.route;
+import app.routes.Routes;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.*;
@@ -22,7 +22,7 @@ class TripControllerTest {
         ApplicationConfig.
                 getInstance()
                 .initiateServer()
-                .setRoute(new route().getRoutes())
+                .setRoute(new Routes().getRoutes())
                 .startServer(7080);
     }
 

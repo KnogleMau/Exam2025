@@ -1,7 +1,7 @@
 package app.security.controllers;
 
 import app.config.ApplicationConfig;
-import app.routes.route;
+import app.routes.Routes;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
@@ -24,7 +24,7 @@ class SecurityControllerTest {
                 //  .checkSecurityRoles() // check for role when route is called
                 //  .setRoute(new SecurityRoutes().getSecurityRoutes())
                 //  .setRoute(SecurityRoutes.getSecuredRoutes())
-                .setRoute(new route().getRoutes())
+                .setRoute(new Routes().getRoutes())
                 .startServer(7080);
     }
 
