@@ -33,7 +33,7 @@ User Stories implementet
 - US 4 Implementet
 - US 5 Implementet
 - US 6 Implementet (But i have changed the route so its just GET /candidates/top-by-popularity, which you also can se in my dokumentation)
-- US 7 Implementet (I have implementet alot of the test, but i am still missing some of the tests)
+- US 7 Implementet 
 - US 8 Implementet (But my tests dont verify secure access behavior, because i didnt have the time, to setup the login, you can enable the security in the test and watch them all fail because of the missing token, you can also test it in my dev.http)
 
 

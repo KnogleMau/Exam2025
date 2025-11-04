@@ -143,7 +143,7 @@ class CandidateControllerTest {
 
 
     @Test
-    @Order(7)
+    @Order(8)
     void delete() {
         given()
                 .pathParam("id", createdCandidateId)
@@ -153,6 +153,8 @@ class CandidateControllerTest {
                 .statusCode(200)
                 .body(containsString("deleted"));
     }
+
+
 
 
 
@@ -167,4 +169,16 @@ class CandidateControllerTest {
                 .then()
                 .statusCode(200);
     }
-}
+
+    @Test
+    @Order(7)
+    void getPopularityFromCandidates() {
+        given()
+                .when()
+                .get("candidates/top-by-popularity")
+                .then()
+                .statusCode(200)
+                .body("[0].averagePopularityScore", greaterThan(0.0f))
+                .body("[0].candidateName", equalTo("Rene"));
+        }
+    }
