@@ -4,6 +4,9 @@ import app.config.HibernateConfig;
 import app.daos.SkillDAO;
 import app.dtos.SkillDTO;
 import app.exceptions.ApiException;
+import app.utils.Utils;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.javalin.http.Context;
 import jakarta.persistence.EntityManagerFactory;
 import org.slf4j.Logger;
@@ -14,9 +17,8 @@ import java.util.List;
 public class SkillController implements IController{
     EntityManagerFactory emf = HibernateConfig.getEntityManagerFactory();
     SkillDAO s = new SkillDAO(emf);
+    ObjectMapper objectMapper = new Utils().getObjectMapper();
 
-    private static final Logger logger = LoggerFactory.getLogger(SkillController.class);
-    private static final Logger debugLogger = LoggerFactory.getLogger("app");
 
     @Override
     public void read(Context ctx) {
@@ -25,7 +27,8 @@ public class SkillController implements IController{
             SkillDTO skillDTO = s.read(id);
             ctx.status(200).json(skillDTO);
         } catch(ApiException ex){
-            ctx.status(ex.getCode()).result(ex.getMessage());
+            ObjectNode on = objectMapper.createObjectNode().put("msg",ex.getMessage()).put("status",ex.getCode());
+            ctx.status(ex.getCode()).json(on);
         }
     }
 
@@ -36,7 +39,8 @@ public class SkillController implements IController{
             List<SkillDTO> skills = s.readAll();
             ctx.status(200).json(skills);
             } catch (ApiException ex){
-            ctx.status(ex.getCode()).result(ex.getMessage());
+            ObjectNode on = objectMapper.createObjectNode().put("msg",ex.getMessage()).put("status",ex.getCode());
+            ctx.status(ex.getCode()).json(on);
         }
     }
 
@@ -48,7 +52,8 @@ public class SkillController implements IController{
             s.create(skillDTO);
             ctx.status(201).json(skillDTO);
         }catch (ApiException ex) {
-            ctx.status(ex.getCode()).result(ex.getMessage());
+            ObjectNode on = objectMapper.createObjectNode().put("msg",ex.getMessage()).put("status",ex.getCode());
+            ctx.status(ex.getCode()).json(on);
         }
     }
 
@@ -60,7 +65,8 @@ public class SkillController implements IController{
             SkillDTO updatedSkill = s.update(id, skillDTO);
             ctx.status(200).json(updatedSkill);
         } catch (ApiException ex){
-             ctx.status(ex.getCode()).result(ex.getMessage());
+            ObjectNode on = objectMapper.createObjectNode().put("msg",ex.getMessage()).put("status",ex.getCode());
+            ctx.status(ex.getCode()).json(on);
         }
 
     }
@@ -72,7 +78,8 @@ public class SkillController implements IController{
             s.delete(id);
             ctx.status(200).result("The skill with the " + id + " have been deleted");
         } catch (ApiException ex){
-            ctx.status(ex.getCode()).result(ex.getMessage());
+            ObjectNode on = objectMapper.createObjectNode().put("msg",ex.getMessage()).put("status",ex.getCode());
+            ctx.status(ex.getCode()).json(on);
         }
     }
 }

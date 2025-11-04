@@ -8,6 +8,9 @@ import app.dtos.SkillDTO;
 import app.dtos.SkillStatsResponseDTO;
 import app.exceptions.ApiException;
 import app.service.ApiService;
+import app.utils.Utils;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import io.javalin.http.BadRequestResponse;
 import io.javalin.http.Context;
 import jakarta.persistence.EntityManagerFactory;
@@ -21,9 +24,8 @@ import java.util.stream.Collectors;
 public class CandidateController implements IController{
     EntityManagerFactory emf = HibernateConfig.getEntityManagerFactory();
     CandidateDAO c = new CandidateDAO(emf);
+    ObjectMapper objectMapper = new Utils().getObjectMapper();
 
-    private static final Logger logger = LoggerFactory.getLogger(CandidateController.class);
-    private static final Logger debugLogger = LoggerFactory.getLogger("app");
 
     @Override
     public void read(Context ctx) {
@@ -48,7 +50,8 @@ public class CandidateController implements IController{
             }
             ctx.status(200).json(candidateDTO);
         } catch(ApiException ex){
-            ctx.status(ex.getCode()).result(ex.getMessage());
+            ObjectNode on = objectMapper.createObjectNode().put("msg",ex.getMessage()).put("status",ex.getCode());
+            ctx.status(ex.getCode()).json(on);
         }
     }
 
@@ -65,7 +68,8 @@ public class CandidateController implements IController{
 
             ctx.status(200).json(candidates);
         } catch (ApiException ex){
-            ctx.status(ex.getCode()).result(ex.getMessage());
+            ObjectNode on = objectMapper.createObjectNode().put("msg",ex.getMessage()).put("status",ex.getCode());
+            ctx.status(ex.getCode()).json(on);
         }
     }
 
@@ -77,7 +81,8 @@ public class CandidateController implements IController{
             c.create(candidateDTO);
             ctx.status(201).json(candidateDTO);
         }catch (ApiException ex) {
-            ctx.status(ex.getCode()).result(ex.getMessage());
+            ObjectNode on = objectMapper.createObjectNode().put("msg",ex.getMessage()).put("status",ex.getCode());
+            ctx.status(ex.getCode()).json(on);
         }
     }
 
@@ -89,7 +94,8 @@ public class CandidateController implements IController{
             CandidateDTO updatedCandidate = c.update(id, candidateDTO);
             ctx.status(200).json(updatedCandidate);
         } catch (ApiException ex){
-            ctx.status(ex.getCode()).result(ex.getMessage());
+            ObjectNode on = objectMapper.createObjectNode().put("msg",ex.getMessage()).put("status",ex.getCode());
+            ctx.status(ex.getCode()).json(on);
         }
 
     }
@@ -101,7 +107,8 @@ public class CandidateController implements IController{
             c.delete(id);
             ctx.status(200).result("The Candidate with the " + id + " have been deleted");
         } catch (ApiException ex){
-            ctx.status(ex.getCode()).result(ex.getMessage());
+            ObjectNode on = objectMapper.createObjectNode().put("msg",ex.getMessage()).put("status",ex.getCode());
+            ctx.status(ex.getCode()).json(on);
         }
     }
 
@@ -114,7 +121,8 @@ public class CandidateController implements IController{
 
             ctx.status(200).json(updatedCandidate);
         }catch (ApiException ex){
-            ctx.status(ex.getCode()).result(ex.getMessage());
+            ObjectNode on = objectMapper.createObjectNode().put("msg",ex.getMessage()).put("status",ex.getCode());
+            ctx.status(ex.getCode()).json(on);
         }
     }
     public void getPopularityFromCandidates(Context ctx){
@@ -122,7 +130,8 @@ public class CandidateController implements IController{
             List<CandidatePopularityDTO> candidates = c.getTopByPopularity();
             ctx.status(200).json(candidates);
         } catch (ApiException ex) {
-            ctx.status(ex.getCode()).result(ex.getMessage());
+            ObjectNode on = objectMapper.createObjectNode().put("msg",ex.getMessage()).put("status",ex.getCode());
+            ctx.status(ex.getCode()).json(on);
         }
     }
 }

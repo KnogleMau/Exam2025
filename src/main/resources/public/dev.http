@@ -34,11 +34,11 @@ GET https://{{url}}/candidates/top-by-popularity
 AUTHORIZATION: Bearer {{aToken}}
 
 ### Get all Candidates with ?category=frontend
-GET https://{{url}}/candidates
+GET https://{{url}}/candidates?category=frontend
 AUTHORIZATION: Bearer {{aToken}}
 
 ### GET With id
-GET https://{{url}}/candidates/4
+GET https://{{url}}/candidates/6
 AUTHORIZATION: Bearer {{aToken}}
 
 ### POST Candidate
