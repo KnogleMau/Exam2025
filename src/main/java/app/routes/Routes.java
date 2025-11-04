@@ -6,14 +6,14 @@ import static io.javalin.apibuilder.ApiBuilder.get;
 import static io.javalin.apibuilder.ApiBuilder.path;
 
 public class Routes {
-    GuideRoutes guideRoutes = new GuideRoutes();
-    TripRoutes tripRoutes = new TripRoutes();
+    SkillRoutes skillRoutes = new SkillRoutes();
+    CandidateRoutes candidateRoutes = new CandidateRoutes();
     public EndpointGroup getRoutes(){
         return () -> {
 
           get("/", ctx -> ctx.result("Hello World"));
-          path("/trips", tripRoutes.getRoutes());
-          path("/guides",guideRoutes.getRoutes());
+          path("/candidates", candidateRoutes.getRoutes());
+          path("/skill", skillRoutes.getRoutes());
         };
     }
 }

@@ -25,56 +25,50 @@ GET http://{{url}}/protected/admin_demo
 AUTHORIZATION: Bearer {{aToken}}
 
 
-### GET All Trips -- ?category=CITY
-GET https://{{url}}/trips
+### GET All Candidates
+GET https://{{url}}/candidates
+AUTHORIZATION: Bearer {{aToken}}
+
+### GET All Candidates sorted by popularity
+GET https://{{url}}/candidates/top-by-popularity
+AUTHORIZATION: Bearer {{aToken}}
+
+### Get all Candidates with ?category=frontend
+GET https://{{url}}/candidates
 AUTHORIZATION: Bearer {{aToken}}
 
 ### GET With id
-GET https://{{url}}/trips/6
+GET https://{{url}}/candidates/4
 AUTHORIZATION: Bearer {{aToken}}
 
-### GET Total price for the diffrent guides
-GET https://{{url}}/trips/guides/totalprice
-AUTHORIZATION: Bearer {{aToken}}
-
-### GET packing weight
-GET https://{{url}}/trips/1/packing/weight
-AUTHORIZATION: Bearer {{aToken}}
-
-### POST trips
-POST https://{{url}}/trips
+### POST Candidate
+POST https://{{url}}/candidates
 Content-Type: application/json
 AUTHORIZATION: Bearer {{aToken}}
 
 {
-"name": "Copenhagen",
-"startTime": "2026-04-20T09:00",
-"endTime": "2026-04-20T17:00",
-"location": "Denmark",
-"price": 1200,
-"category": "CITY"
+  "name": "Rasmus",
+  "phoneNumber": "91919191",
+  "educationBackground":"Ek"
 }
 
-### Update a trip
-PUT https://{{url}}/trips/6
+### Update a candidate
+PUT https://{{url}}/candidates/6
 Content-Type: application/json
 AUTHORIZATION: Bearer {{aToken}}
 
 {
-  "name": "Aarhus",
-  "startTime": "2026-04-20T09:00",
-  "endTime": "2026-04-20T17:00",
-  "location": "Denmark",
-  "price": 1200,
-  "category": "CITY"
+  "name": "Rasmus",
+  "phoneNumber": "41414141",
+  "educationBackground":"Ek"
 }
 
-### Adds a Guide to the trip
-PUT https://{{url}}//trips/6/guides/5
+### Adds a skill to the Candidate
+PUT https://{{url}}//candidates/6/skills/1
 AUTHORIZATION: Bearer {{aToken}}
 
 
-### Delete a Trip
-DELETE https://{{url}}/trips/6
+### Delete a Candidate
+DELETE https://{{url}}/candidates/6
 AUTHORIZATION: Bearer {{aToken}}
 

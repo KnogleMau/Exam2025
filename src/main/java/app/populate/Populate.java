@@ -1,8 +1,8 @@
 package app.populate;
 
-import app.daos.GuideDAO;
-import app.entities.Guide;
-import app.entities.Trip;
+import app.daos.CandidateDAO;
+import app.entities.Candidate;
+import app.entities.Skill;
 import app.enums.Category;
 import app.exceptions.EntityNotFoundException;
 import app.security.daos.SecurityDAO;
@@ -19,110 +19,121 @@ public class Populate {
         this.emf = emf;
     }
 
-    GuideDAO guideDAO = new GuideDAO(emf);
+    CandidateDAO candidateDAO = new CandidateDAO(emf);
 
     public void populateData() throws EntityNotFoundException {
-        Guide g1 = Guide.builder()
+        Candidate c1 = Candidate.builder()
                 .name("Anders")
-                .email("And@hotmail.com")
                 .phoneNumber("12121212")
-                .yearsOfExperience(5)
-                .trips(new ArrayList<>())
+                .educationBackground("Ek")
                 .build();
 
-        Guide g2 = Guide.builder()
+        Candidate c2 = Candidate.builder()
                 .name("Sander")
-                .email("Sander@hotmail.com")
                 .phoneNumber("12321212")
-                .yearsOfExperience(7)
-                .trips(new ArrayList<>())
+                .educationBackground("Ek")
                 .build();
 
-        Guide g3 = Guide.builder()
+        Candidate c3 = Candidate.builder()
                 .name("Bo")
-                .email("Bo@hotmail.com")
                 .phoneNumber("98721212")
-                .yearsOfExperience(13)
-                .trips(new ArrayList<>())
+                .educationBackground("Ek")
                 .build();
 
 
-        Guide g4 = Guide.builder()
+        Candidate c4 = Candidate.builder()
                 .name("Magnus")
-                .email("Magnus@hotmail.com")
                 .phoneNumber("91919191")
-                .yearsOfExperience(2)
-                .trips(new ArrayList<>())
+                .educationBackground("Ek")
                 .build();
 
 
-        Guide g5 = Guide.builder()
+        Candidate c5 = Candidate.builder()
                 .name("Frank")
-                .email("Frank@hotmail.com")
                 .phoneNumber("52352312")
-                .yearsOfExperience(1)
-                .trips(new ArrayList<>())
+                .educationBackground("Ek")
                 .build();
 
 
-        Trip trip1 = Trip.builder()
-                .name("Sunny-Beach")
-                .startTime(LocalDateTime.of(2026, 04, 20, 13, 30))
-                .endTime(LocalDateTime.of(2026, 04, 20, 17, 30))
-                .location("Bulgaria")
-                .price(1500)
-                .category(Category.BEACH)
+        Skill skill1 = Skill.builder()
+                .name("Framework")
+                .category(Category.FRAMEWORK)
+                .description(Category.FRAMEWORK.getDescription())
+                .slug(Category.FRAMEWORK.getSlugList())
                 .build();
 
-        Trip trip2 = Trip.builder()
-                .name("Porto")
-                .startTime(LocalDateTime.of(2026, 05, 20, 07, 30))
-                .endTime(LocalDateTime.of(2026, 05, 22, 21, 30))
-                .location("Portugal")
-                .price(8000)
-                .category(Category.CITY)
+        Skill skill2 = Skill.builder()
+                .name("Frontend")
+                .category(Category.FRONTEND)
+                .description(Category.FRONTEND.getDescription())
+                .slug(Category.FRONTEND.getSlugList())
                 .build();
 
-        Trip trip3 = Trip.builder()
-                .name("Miami")
-                .startTime(LocalDateTime.of(2026, 06, 20, 13, 30))
-                .endTime(LocalDateTime.of(2026, 07, 20, 17, 30))
-                .location("USA")
-                .price(45000)
-                .category(Category.CITY)
+        Skill skill3 = Skill.builder()
+                .name("Programming Language")
+                .category(Category.PROG_LANG)
+                .description(Category.PROG_LANG.getDescription())
+                .slug(Category.PROG_LANG.getSlugList())
                 .build();
 
-        Trip trip4 = Trip.builder()
-                .name("Mountains")
-                .startTime(LocalDateTime.of(2026, 02, 20, 04, 30))
-                .endTime(LocalDateTime.of(2026, 02, 27, 13, 30))
-                .location("Sweden")
-                .price(15000)
-                .category(Category.LAKE)
+        Skill skill4 = Skill.builder()
+                .name("Database")
+                .category(Category.DB)
+                .description(Category.DB.getDescription())
+                .slug(Category.DB.getSlugList())
                 .build();
 
-        Trip trip5 = Trip.builder()
-                .name("Megaluf")
-                .startTime(LocalDateTime.of(2026, 07, 17, 13, 30))
-                .endTime(LocalDateTime.of(2026, 07, 24, 17, 30))
-                .location("Spain")
-                .price(19500)
-                .category(Category.BEACH)
+        Skill skill5 = Skill.builder()
+                .name("Devops")
+                .category(Category.DEVOPS)
+                .description(Category.DEVOPS.getDescription())
+                .slug(Category.DEVOPS.getSlugList())
                 .build();
 
-        g1.addTrip(trip5);
-        g2.addTrip(trip4);
-        g3.addTrip(trip1);
-        g4.addTrip(trip2);
-        g5.addTrip(trip3);
+        Skill skill6 = Skill.builder()
+                .name("Testing")
+                .category(Category.TESTING)
+                .description(Category.TESTING.getDescription())
+                .slug(Category.TESTING.getSlugList())
+                .build();
+
+        Skill skill7 = Skill.builder()
+                .name("Data")
+                .category(Category.DATA)
+                .description(Category.DATA.getDescription())
+                .slug(Category.DATA.getSlugList())
+                .build();
+
+
+
+        c1.addSkill(skill1);
+        c1.addSkill(skill7);
+        c1.addSkill(skill3);
+
+        c2.addSkill(skill3);
+        c2.addSkill(skill4);
+        c2.addSkill(skill5);
+
+        c3.addSkill(skill2);
+        c3.addSkill(skill6);
+        c3.addSkill(skill5);
+
+        c4.addSkill(skill7);
+        c4.addSkill(skill3);
+        c4.addSkill(skill1);
+
+        c5.addSkill(skill7);
+        c5.addSkill(skill2);
+        c5.addSkill(skill3);
+
 
        try(EntityManager em = emf.createEntityManager()){
            em.getTransaction().begin();
-           em.persist(g1);
-           em.persist(g2);
-           em.persist(g3);
-           em.persist(g4);
-           em.persist(g5);
+           em.persist(c1);
+           em.persist(c2);
+           em.persist(c3);
+           em.persist(c4);
+           em.persist(c5);
            em.getTransaction().commit();
 
        }

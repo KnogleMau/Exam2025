@@ -1,5 +1,5 @@
-# Trip Planning Api
-This is a simple project, where you can see a trip, and then the guide to the trip, you will also be able to see what you should bring on your trip, so you will also get a packing list, if you dont have the things on the packing list, you will be provided with link and price to the diffrent items, which you should bring along.
+# Candidate Matcher Application
+This project is a backend system for a recruitment platform helping companies match candidates to relevant skills and technologies.
 
 
 ## Tech
@@ -12,7 +12,7 @@ This is a simple project, where you can see a trip, and then the guide to the tr
 
 ## How to run the project
 1. Clone the project from my github
-2. This is the link you should use when cloning the project https://github.com/KnogleMau/Mock-Exam.git
+2. This is the link you should use when cloning the project https://github.com/KnogleMau/Exam2025.git
 3. When the project is cloned, you start the Application in Main.java
 4. For the project to work correctly you should make a config.properties with these env in the
    -  SECRET_KEY=("Need to be 32 long something like this (ASD123WE3123SD123SDADS321HJB23P) Just make sure its 32 characters long")
@@ -33,7 +33,7 @@ Base URL:
 >
 > **Roles:**
 > -  **ADMIN** – full access (create, update, delete)
-> -  **USER** – read-only access to trips and guides
+> -  **USER** – read-only access to Candidates and Skills
 
 ---
 
@@ -48,40 +48,37 @@ Base URL:
 
 ---
 
-### Trip Endpoints
+### Candidate Endpoints
 
 | Method | Endpoint | Description | Requires Token | Allowed Roles |
 |---------|-----------|--------------|----------------|----------------|
-| **GET** | `/trips` | Get all trips or filter by `?category=CITY` | ✅ | USER, ADMIN |
-| **GET** | `/trips/{id}` | Get a specific trip by ID | ✅ | USER, ADMIN |
-| **GET** | `/trips/guides/totalprice` | Get total price for all guides | ✅ | USER, ADMIN |
-| **GET** | `/trips/{id}/packing/weight` | Get total packing weight for a trip | ✅ | USER, ADMIN |
-| **POST** | `/trips` | Create a new trip | ✅ | ADMIN |
-| **PUT** | `/trips/{id}` | Update an existing trip | ✅ | ADMIN |
-| **PUT** | `/trips/{tripId}/guides/{guideId}` | Add a guide to a trip | ✅ | ADMIN |
-| **DELETE** | `/trips/{id}` | Delete a trip | ✅ | ADMIN |
+| **GET** | `/candidates` | Get all candidates or filter by `?category=FRAMEWORK` | ✅ | USER, ADMIN |
+| **GET** | `/candidates/{id}` | Get a specific candidate by ID (includes enriched skill data) | ✅ | USER, ADMIN |
+| **GET** | `/candidates/top-by-popularity` | Get candidates ranked by average popularity score | ✅ | USER, ADMIN |
+| **POST** | `/candidates` | Create a new candidate | ✅ | ADMIN |
+| **PUT** | `/candidates/{id}` | Update an existing candidate | ✅ | ADMIN |
+| **PUT** | `/candidates/{candidateId}/skills/{skillId}` | Add a skill to a candidate | ✅ | ADMIN |
+| **DELETE** | `/candidates/{id}` | Delete a candidate | ✅ | ADMIN |
 
 ---
 
-### Guide Endpoints
+### Skill Endpoints
 
 | Method | Endpoint | Description | Requires Token | Allowed Roles |
 |---------|-----------|--------------|----------------|----------------|
-| **GET** | `/guides` | Retrieve all guides | ✅ | USER, ADMIN |
+| **GET** | `/skill` | Retrieve all skills | ✅ | USER, ADMIN |
+| **POST** | `/skill` | Create a new skill | ✅ | ADMIN |
 
 ### Json Format
 
 ```json
-When you want to POST/UPDATE a trip you need the correct format to do it.
+When you want to POST/UPDATE a Candidate you need the correct format to do it.
 
-Trip Json format
+Candidat Json format
 {
-"name": "Copenhagen",
-"startTime": "2026-04-20T09:00",
-"endTime": "2026-04-20T17:00",
-"location": "Denmark",
-"price": 1200,
-"category": "CITY"
+"name": "Rasmus",
+"phoneNumber": "91919191",
+"educationBackground":"Ek"
 }
 
 
