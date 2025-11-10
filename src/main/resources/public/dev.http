@@ -38,7 +38,7 @@ GET https://{{url}}/candidates?category=frontend
 AUTHORIZATION: Bearer {{aToken}}
 
 ### GET With id
-GET https://{{url}}/candidates/6
+GET https://{{url}}/candidates/1
 AUTHORIZATION: Bearer {{aToken}}
 
 ### POST Candidate

@@ -21,7 +21,7 @@ public class SkillDTO {
     private String name;
     private Category category;
     private String description;
-    private String slug;
+
 
 
     public SkillDTO(Skill skill){
@@ -29,6 +29,5 @@ public class SkillDTO {
         this.name = skill.getName();
         this.category = skill.getCategory();
         this.description = skill.getDescription();
-        this.slug = skill.getSlug();
     }
 }

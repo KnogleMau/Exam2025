@@ -137,8 +137,10 @@ public class CandidateDAO implements IDAO<CandidateDTO, Integer>{
             for (Candidate candidate : candidates) {
                 if (candidate.getSkills().isEmpty()) continue;
                 String slugs = candidate.getSkills().stream()
-                        .flatMap(skill -> Arrays.stream(skill.getSlug().split(",")))
+                        .map(Skill::getName)
                         .map(String::trim)
+                        .map(s -> s.toLowerCase())
+                        .distinct()
                         .collect(Collectors.joining(","));
 
 

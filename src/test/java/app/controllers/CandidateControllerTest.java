@@ -95,10 +95,9 @@ class CandidateControllerTest {
         String skillJson =
             """
                     {
-                      "name": "Framework",
+                      "name": "Angular",
                       "category": "FRAMEWORK",
-                      "description": "Application frameworks and libraries",
-                      "slug": "spring-boot,react,angular"
+                      "description": "Application frameworks and libraries"
                     }
             """;
     given()
@@ -109,7 +108,7 @@ class CandidateControllerTest {
             .then()
             .contentType(ContentType.JSON)
             .statusCode(201)
-            .body("name", equalTo("Framework"))
+            .body("name", equalTo("Angular"))
             .body("category", equalTo("FRAMEWORK"));
 
     }

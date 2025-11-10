@@ -33,8 +33,6 @@ public class Skill {
     @Column(nullable = false)
     private String description;
 
-    @Column(nullable = false, unique = true)
-    private String slug;
 
 
     @Builder.Default
@@ -47,6 +45,5 @@ public class Skill {
         this.name = skillDTO.getName();
         this.category = skillDTO.getCategory();
         this.description = skillDTO.getDescription();
-        this.slug = skillDTO.getSlug();
     }
 }

@@ -34,23 +34,23 @@ public class CandidateController implements IController{
             CandidateDTO candidateDTO = c.read(id);
 
             String slugs = candidateDTO.getSkills().stream()
-                    .map(SkillDTO::getSlug)
-                    .map(s -> s.split(","))
-                    .flatMap(Arrays::stream)
-                    .map(String::trim)
+                    .map(SkillDTO::getName)
+                    .map(s -> s.trim())
+                    .map(s -> s.toLowerCase())
                     .distinct()
                     .collect(Collectors.joining(","));
 
             String url = "https://apiprovider.cphbusinessapps.dk/api/v1/skills/stats?slugs=" + slugs;
+            System.out.println(url);
 
             SkillStatsResponseDTO statsResponseDTO = ApiService.fetchData(url, SkillStatsResponseDTO.class);
 
-            if(statsResponseDTO != null){
+            if (statsResponseDTO != null) {
                 candidateDTO.setSkillStatsDTOS(statsResponseDTO.getData());
             }
             ctx.status(200).json(candidateDTO);
-        } catch(ApiException ex){
-            ObjectNode on = objectMapper.createObjectNode().put("msg",ex.getMessage()).put("status",ex.getCode());
+        } catch (ApiException ex) {
+            ObjectNode on = objectMapper.createObjectNode().put("msg", ex.getMessage()).put("status", ex.getCode());
             ctx.status(ex.getCode()).json(on);
         }
     }

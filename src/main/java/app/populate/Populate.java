@@ -58,50 +58,43 @@ public class Populate {
         Skill skill1 = Skill.builder()
                 .name("Framework")
                 .category(Category.FRAMEWORK)
-                .description(Category.FRAMEWORK.getDescription())
-                .slug(Category.FRAMEWORK.getSlugList())
+                .description("Framework")
                 .build();
 
         Skill skill2 = Skill.builder()
-                .name("Frontend")
+                .name("React")
                 .category(Category.FRONTEND)
-                .description(Category.FRONTEND.getDescription())
-                .slug(Category.FRONTEND.getSlugList())
+                .description("React is used to develop frontend design like facebook")
                 .build();
 
         Skill skill3 = Skill.builder()
-                .name("Programming Language")
+                .name("Java")
                 .category(Category.PROG_LANG)
-                .description(Category.PROG_LANG.getDescription())
-                .slug(Category.PROG_LANG.getSlugList())
+                .description("Java is a popular programming Launguage that is uses objects")
                 .build();
 
         Skill skill4 = Skill.builder()
-                .name("Database")
+                .name("PostgresSQL")
                 .category(Category.DB)
-                .description(Category.DB.getDescription())
-                .slug(Category.DB.getSlugList())
+                .description("PostgresSQL is about databases")
                 .build();
 
         Skill skill5 = Skill.builder()
                 .name("Devops")
                 .category(Category.DEVOPS)
-                .description(Category.DEVOPS.getDescription())
-                .slug(Category.DEVOPS.getSlugList())
+                .description("Devops is used primaly to store and document code and projects, can also be used to deploy")
                 .build();
 
         Skill skill6 = Skill.builder()
-                .name("Testing")
+                .name("JUnit")
                 .category(Category.TESTING)
-                .description(Category.TESTING.getDescription())
-                .slug(Category.TESTING.getSlugList())
+                .description("JUnit is a lib we use to test the system before release")
                 .build();
 
         Skill skill7 = Skill.builder()
                 .name("Data")
                 .category(Category.DATA)
-                .description(Category.DATA.getDescription())
-                .slug(Category.DATA.getSlugList())
+                .description("Data")
                 .build();
 
 
